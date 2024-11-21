@@ -2,9 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
 import authRoutes from './routes/authRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 dotenv.config();
 
@@ -22,18 +22,14 @@ mongoose.connect(process.env.MONGODB_URI)
 // Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
-
-// Ruta de prueba
-app.get('/', (req, res) => {
-  res.json({ message: 'API de BePoint funcionando correctamente' });
-});
+app.use('/api/upload', uploadRoutes);
 
 // Manejo de errores 404
 app.use((req, res) => {
+  console.log('Ruta no encontrada:', req.originalUrl);
   res.status(404).json({ message: 'Ruta no encontrada' });
 });
 
-// Iniciar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);

@@ -13,36 +13,24 @@ const eventSchema = new mongoose.Schema({
   eventType: {
     type: String,
     required: true,
-    enum: ['batalla', 'clase', 'show', 'competencia', 'workshop', 'otro']
+    enum: ['batalla', 'clase', 'show', 'workshop', 'competencia']
   },
-  // Cambiamos danceStyles para que acepte cualquier string
   danceStyles: [{
-    type: String,
-    trim: true  // Esto eliminará espacios en blanco al inicio y final
+    type: String
   }],
   date: {
     type: Date,
     required: true
   },
   location: {
-    name: String,
-    address: String,
-    city: String,
-    country: String
+    name: { type: String, required: true },
+    address: { type: String, required: true },
+    city: { type: String, default: 'Buenos Aires' },
+    country: { type: String, default: 'Argentina' }
   },
   image: {
     type: String,
-    required: true
-  },
-  organizer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  status: {
-    type: String,
-    enum: ['pendiente', 'aprobado', 'rechazado'],
-    default: 'pendiente'
+    default: ''
   },
   price: {
     type: Number,
@@ -53,6 +41,11 @@ const eventSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 1
+  },
+  organizer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
   registeredParticipants: [{
     type: mongoose.Schema.Types.ObjectId,

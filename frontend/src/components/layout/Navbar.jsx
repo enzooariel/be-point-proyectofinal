@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
+import { Bell, LogOut } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
 
+  const canCreateEvents = user?.role === 'admin' || user?.role === 'organizador';
+
   return (
-    <nav className="bg-secondary-dark py-4 fixed w-full top-0 z-50">
+    <nav className="bg-black py-4 fixed w-full top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -32,22 +34,29 @@ const Navbar = () => {
           </div>
 
           {/* User Actions */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
             {isAuthenticated ? (
-              <div className="flex items-center space-x-4">
+              <>
+                {canCreateEvents && (
+                  <Link 
+                    to="/create-event" 
+                    className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                  >
+                    Crear Evento
+                  </Link>
+                )}
                 <span className="text-white">
                   {user.username} ({user.role})
                 </span>
                 <button
                   onClick={logout}
-                  className="flex items-center text-white hover:text-primary transition-colors"
+                  className="text-white hover:text-primary transition-colors"
                 >
-                  <LogOut className="w-5 h-5 mr-2" />
                   Cerrar Sesión
                 </button>
-              </div>
+              </>
             ) : (
-              <div className="flex items-center space-x-4">
+              <>
                 <Link 
                   to="/login" 
                   className="text-white hover:text-primary transition-colors"
@@ -56,11 +65,11 @@ const Navbar = () => {
                 </Link>
                 <Link 
                   to="/register" 
-                  className="bg-primary px-4 py-2 rounded-md text-white hover:bg-primary-dark transition-colors"
+                  className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
                 >
                   Registrarse
                 </Link>
-              </div>
+              </>
             )}
           </div>
         </div>
