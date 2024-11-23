@@ -25,7 +25,7 @@ const EventCard = ({ event = {}, onOpenModal }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 h-full flex flex-col">
       {/* Imagen del evento */}
       <div className="relative h-72 bg-gray-100"> {/* Agregado bg-gray-100 como fallback */}
         <img 

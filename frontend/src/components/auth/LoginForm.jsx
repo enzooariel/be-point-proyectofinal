@@ -60,7 +60,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-gray-700 mb-2">Tipo de Usuario</label>
           <select
             value={formData.role}
@@ -71,7 +71,7 @@ const LoginForm = () => {
             <option value="organizador">Organizador</option>
             <option value="admin">Administrador</option>
           </select>
-        </div>
+        </div> */}
 
         <button
           type="submit"
