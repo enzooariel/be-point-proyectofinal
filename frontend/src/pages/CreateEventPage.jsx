@@ -146,9 +146,23 @@ const CreateEventPage = () => {
             </div>
           </div>
 
-          {/* Por ahora mantener ciudad y país fijos como AMBA */}
-          <input type="hidden" value="Buenos Aires" />
-          <input type="hidden" value="Argentina" />
+          <div>
+              <label className="block text-gray-700 mb-2">Ciudad</label>
+              <input
+                type="text"
+                value={formData.location.city}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  location: {
+                    ...formData.location,
+                    city: e.target.value
+                  }
+                })}
+                className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Ej: Ciudad Autónoma de Buenos Aires"
+                required
+              />
+          </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>

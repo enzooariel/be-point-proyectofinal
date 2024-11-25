@@ -53,8 +53,16 @@ const EventCard = ({ event = {}, onOpenModal }) => {
             </div>
             <div className="flex items-center text-gray-600">
               <MapPin className="w-4 h-4 mr-2" />
-              <span>{location.city}, {location.country}</span>
+              <span>
+                {location.venue && `${location.venue}, `}
+                {location.address && `${location.address}, `}
+                {location.city || 'Ciudad Autónoma de Buenos Aires'}
+              </span>
             </div>
+            {/* <div className="flex items-center text-gray-600">
+              <MapPin className="w-4 h-4 mr-2" />
+              <span>{location.city}, {location.country}</span>
+            </div> */}
             <div className="flex items-center text-gray-600">
               <Users className="w-4 h-4 mr-2" />
               <span>Capacidad: {capacity} personas</span>

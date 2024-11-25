@@ -26,4 +26,4 @@ function App() {
   );
 }
 
-export default App; // Asegúrate de que esta línea esté presente
+export default App; 
