@@ -125,3 +125,33 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+// controllers/authController.js
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const updates = {
+      username: req.body.username,
+      phone: req.body.phone,
+      favoriteStyles: req.body.favoriteStyles,
+      // cualquier otro campo que quieras actualizar
+    };
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $set: updates },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    res.json({
+      success: true,
+      message: 'Perfil actualizado correctamente',
+      user
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error al actualizar el perfil',
+      error: error.message
+    });
+  }
+};

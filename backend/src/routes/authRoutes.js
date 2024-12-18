@@ -3,7 +3,8 @@ import {
   register, 
   login, 
   getProfile,
-  getAllUsers  // Asegúrate de importar getAllUsers
+  getAllUsers,
+  updateProfile  // Añadido el import
 } from '../controllers/authController.js';
 import authMiddleware from '../middleware/auth.middleware.js';
 
@@ -16,5 +17,6 @@ router.post('/login', login);
 // Rutas protegidas
 router.get('/profile', authMiddleware, getProfile);
 router.get('/users', authMiddleware, getAllUsers);
+router.put('/profile', authMiddleware, updateProfile);
 
 export default router;

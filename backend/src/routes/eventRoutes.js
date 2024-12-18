@@ -9,8 +9,7 @@ import {
     registerToEvent,
     unregisterFromEvent,
     getMyRegisteredEvents,
-    requestOrganizerRole,
-    approveOrganizer,
+   
     getMyEvents
 } from '../controllers/eventController.js';
 import authMiddleware from '../middleware/auth.middleware.js';
@@ -25,9 +24,8 @@ router.get('/search', searchEvents);
 router.get('/my-events', authMiddleware, getMyEvents);
 router.get('/my-registrations', authMiddleware, getMyRegisteredEvents);
 
-// Rutas de gestión de roles
-router.post('/request-organizer', authMiddleware, requestOrganizerRole);
-router.post('/approve-organizer/:userId', authMiddleware, approveOrganizer);
+
+
 
 // Rutas que requieren ID
 router.get('/:id', getEventById);

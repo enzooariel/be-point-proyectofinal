@@ -1,11 +1,11 @@
+// components/layout/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, LogOut } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
-
   const canCreateEvents = user?.role === 'admin' || user?.role === 'organizador';
 
   return (
@@ -45,13 +45,18 @@ const Navbar = () => {
                     Crear Evento
                   </Link>
                 )}
-                <span className="text-white">
-                  {user.username} ({user.role})
-                </span>
+                <Link 
+                  to="/dashboard"
+                  className="flex items-center text-white hover:text-primary transition-colors"
+                >
+                  <User className="w-5 h-5 mr-2" />
+                  Mi Perfil
+                </Link>
                 <button
                   onClick={logout}
-                  className="text-white hover:text-primary transition-colors"
+                  className="flex items-center text-white hover:text-primary transition-colors"
                 >
+                  <LogOut className="w-5 h-5 mr-2" />
                   Cerrar Sesión
                 </button>
               </>

@@ -12,12 +12,13 @@ const Hero = () => {
     navigate('/events');
   };
 
+
   return (
-    <section className="relative bg-gradient-to-br from-secondary via-secondary-dark to-black h-[600px]">
+    <section className="relative bg-gradient-to-r from-black via-gray-900 to-white h-[600px]">
       <div className="container mx-auto px-4 relative z-10 h-full flex items-center justify-between">
         <div className="max-w-2xl text-white">
           <h1 className="text-5xl font-bold mb-6">
-            Descubre el mundo de la 
+            Descubre el mundo de la
             <span className="text-primary"> danza urbana</span>
           </h1>
           <p className="text-xl mb-8 text-gray-300">
@@ -31,7 +32,8 @@ const Hero = () => {
             <ArrowRight className="w-5 h-5"/>
           </button>
         </div>
-        <div className="animate-bounce flex justify-start ">
+
+        <div className="animate-bounce flex justify-start p-6 rounded-lg ">
           <img src={LogoImage} alt="Logo" className="h-56 w-50" />
         </div>
       </div>
